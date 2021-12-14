@@ -29,13 +29,14 @@ function Search(props) {
   return (
     <Box
     component="form"
+    onSubmit={(e) => {e.preventDefault();search(value)}}
     sx={{
     '&': {display: 'flex', justifyContent: "center"},
     '& > :not(style)': { m: 1 },
     }}
     >
     <TextField value={value} onChange={changeValue} style={{width: "70%"}} id="outlined-basic" label="Специализация" variant="outlined" />
-    <Button onClick={() => search(value)} variant="contained">Поиск!</Button>
+    <Button onClick={(e) => {e.preventDefault();search(value)}} variant="contained">Поиск!</Button>
     </Box>
   );
 }

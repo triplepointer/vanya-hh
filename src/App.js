@@ -11,9 +11,17 @@ import Service from 'API/Service';
 function App() {
   const [tops, setTops] = useState(null);
   const [currentTop, setCurrentTop] = useState("ВСЕ");
+  const [value, setValue] = useState(0);
+
+  function handleChange(event, newValue) {
+    console.log(event.target.outerText);
+    changeCurrentTop(event.target.outerText);
+    setValue(newValue);
+  }
 
   useEffect(() => {
-    console.log(tops);
+    setCurrentTop('ВСЕ');
+    setValue(0);
     return () => {
       // effect
     };
@@ -42,7 +50,7 @@ function App() {
       <Header />
       <Search search={search} />
       {tops ? 
-      <Categories changeCurrentTop={changeCurrentTop} categories={tops.CategoriesTop} />
+      <Categories changeCurrentTop={changeCurrentTop} value={value} handleChange={handleChange} categories={tops.CategoriesTop} />
       : <></>
     }
           {tops && (currentTop === "ВСЕ") ? 

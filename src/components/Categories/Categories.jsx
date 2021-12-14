@@ -5,21 +5,14 @@ import Box from '@mui/material/Box';
 
 function Categories(props) {
 
-    const [value, setValue] = useState(0);
     const currentLabel = 'Все';
-
-    function handleChange(event, newValue) {
-        console.log(event.target.outerText);
-        props.changeCurrentTop(event.target.outerText);
-        setValue(newValue);
-    }
 
     return (
         props.categories.length 
             ?         <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
             <Tabs
-                value={value}
-                onChange={handleChange}
+                value={props.value}
+                onChange={props.handleChange}
                 variant="scrollable"
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
