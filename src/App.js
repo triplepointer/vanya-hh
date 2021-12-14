@@ -11,11 +11,11 @@ import Service from 'API/Service';
 function App() {
   const [tops, setTops] = useState(null);
   const [currentTop, setCurrentTop] = useState("ВСЕ");
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(0);
 
   function handleChange(event, newValue) {
-    console.log(event.target.outerText);
-    changeCurrentTop(event.target.outerText);
+    console.log(event.target.innerText);
+    changeCurrentTop(event.target.innerText);
     setValue(newValue);
   }
 
@@ -32,8 +32,8 @@ function App() {
   }
 
 
-  async function search(value) {
-    const newVal = await Service.getJobs(value);
+  async function search(values) {
+    const newVal = await Service.getJobs(values);
     console.log(newVal);
     newVal.CategoriesTop.map(
       el => 
