@@ -1,11 +1,9 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
 function Categories(props) {
-
-    const currentLabel = 'Все';
 
     return (
         props.categories.length 

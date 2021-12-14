@@ -11,7 +11,7 @@ import Service from 'API/Service';
 function App() {
   const [tops, setTops] = useState(null);
   const [currentTop, setCurrentTop] = useState("ВСЕ");
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('');
 
   function handleChange(event, newValue) {
     console.log(event.target.outerText);
@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     setCurrentTop('ВСЕ');
-    setValue(0);
+    setValue('');
     return () => {
       // effect
     };
@@ -49,20 +49,21 @@ function App() {
     <div>
       <Header />
       <Search search={search} />
-      {tops ? 
+      {tops !== null && tops.AllTop.length !== 0  ? 
       <Categories changeCurrentTop={changeCurrentTop} value={value} handleChange={handleChange} categories={tops.CategoriesTop} />
       : <></>
     }
-          {tops && (currentTop === "ВСЕ") ? 
+          {tops && (currentTop === "ВСЕ") && (tops.AllTop.length !== 0) ? 
       tops.AllTop.map(({Keyword, Rate}) =>
               <Info Keyword={Keyword} Rate={Rate}/>
       )
-      : tops ?
+      : tops && (tops.AllTop.length !== 0) ?
       tops.CategoriesTop.find(o => o.Category === currentTop).Top.map(({Keyword, Rate}) =>
               <Info Keyword={Keyword} Rate={Rate}/>     
       )
-      :
-      <></>
+      : (tops !== null) && (tops.AllTop.length === 0) ?
+      <h6 style={{textAlign: "center"}}>По запросу {value} результаты не найдены</h6>
+      : <></>
           }
 
     </div>
